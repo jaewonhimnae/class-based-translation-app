@@ -9,9 +9,18 @@ class App extends Component {
   handleClick(lang) {
     i18next.changeLanguage(lang)
   }
-  
+
   render() {
     const { t } = this.props;
+
+    let somthingNeedsTobe = "";
+    let tagetedValue = 1;
+    //when you want it to be rtl 
+    if (tagetedValue === 1) {
+      somthingNeedsTobe = "rtl"
+    } else {
+      somthingNeedsTobe = "ltr"
+    }
 
     return (
       <div className="App">
@@ -24,12 +33,24 @@ class App extends Component {
         </button>
           <button onClick={() => this.handleClick('chi')} >
             Chinese
-       </button>
+          </button>
         </nav>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             <h3>{t('Thanks.1')}</h3>  <h3>{t('Why.1')}</h3>
+            {somthingNeedsTobe === rtl ?
+              t('Position1') :
+              t('Position2')
+            }
+            {somthingNeedsTobe === rtl ?
+              //Load External Css A
+              <></>
+              : 
+              <></>
+              //Load External Css B
+            }
+
           </p>
         </header>
       </div>
