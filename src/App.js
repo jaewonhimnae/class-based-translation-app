@@ -1,37 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react'
 import logo from './logo.svg';
 import './App.css';
-import { useTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import i18next from 'i18next';
 
-function App() {
-  const { t } = useTranslation();
+class App extends Component {
 
-  function handleClick(lang) {
+  handleClick(lang) {
     i18next.changeLanguage(lang)
   }
+  
+  render() {
+    const { t } = this.props;
 
-  return (
-    <div className="App">
-        <nav style={{ width: '100%', padding: '2rem 0', backgroundColor:'gray' }}>
-          <button onClick={()=>handleClick('en')} >
+    return (
+      <div className="App">
+        <nav style={{ width: '100%', padding: '2rem 0', backgroundColor: 'gray' }}>
+          <button onClick={() => this.handleClick('en')} >
             English
-          </button>
-          <button onClick={()=>handleClick('ko')} >
+        </button>
+          <button onClick={() => this.handleClick('ko')} >
             Korean
-          </button>
-          <button onClick={()=>handleClick('chi')} >
+        </button>
+          <button onClick={() => this.handleClick('chi')} >
             Chinese
-         </button>
+       </button>
         </nav>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            <h3>{t('Thanks.1')}</h3>  <h3>{t('Why.1')}</h3> 
+            <h3>{t('Thanks.1')}</h3>  <h3>{t('Why.1')}</h3>
           </p>
         </header>
-    </div>
-  );
+      </div>
+    )
+  }
 }
 
-export default App;
+export default withTranslation()(App);
